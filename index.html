@@ -128,6 +128,85 @@
     </style>
 </head>
 <body>
+    <!-- add bootstarp login nav -->
+
+    
+   
+    <!-- add bootstarp login nav -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Admin panel</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="./index.html"
+              >Manage Events<span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./addNotice.html">Notification</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./registeredUsers.html">Manage User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./queryList.html">Queries</a>
+          </li>
+
+          <li class="nav-item" id="name"></li>
+          <li class="nav-item" id="photo"></li>
+
+          <li class="nav-item" id="logout" >
+            <button
+              class="btn btn-primary"
+              href="javascript:void(0);"
+              onclick="signOut();"
+              >Sign out</button
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+     <script>
+    // Sign out the user
+      function signOut() {
+       
+        // clear local storage
+        localStorage.clear();
+        window.location.reload();
+      }
+    </script>
+
+     <!-- add the on load script to check the  jwt -->
+    <script>
+      window.onload = function () {
+        var jwt = localStorage.getItem("jwt");
+        if (jwt == null) {
+            window.location.href = "./login.html";
+
+        } else {
+          var name = localStorage.getItem("name");
+          var email = localStorage.getItem("email");
+          document.getElementById("name").innerHTML = name;
+          
+          document.getElementById("logout").style.display = "block";
+        }
+      };
+    </script>
+
+
     <div class="container form_container">
         <nav class="navbar navbar-expand-lg">
             <ul class="navigation">
@@ -248,10 +327,9 @@
             <input type="text" name="rule" class="form-control rule" required>
         </div>
     </div>
-    <!--extra elements-->
-    <div><a class="ex" href="queryList.html">See queryList.html</a></div>
-    <div><a class="ex" href="addNotice.html">See addNotice.html</a></div>
-    <div><a class="ex" href="registeredUsers.html">see registeredUsers</a></div>
+
+   
+   
 </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -425,6 +503,8 @@
                     jsonForm.file = $form.find('#file').val();
                     let finalForm = {"eventData" : jsonForm}
                     let requestPostUrl = url + "events";
+
+                    let token = localStorage.getItem('jwt');
                     $.ajax({
                            url: requestPostUrl,
                            data: finalForm,
