@@ -6,101 +6,18 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <style>
-        body{
-            background-color:teal;
-        }
-        .addNotification{
-            background-color: white;
-            width:70%;
-            height: 100%;
-            border-radius: 10px;
-            margin-top: 50px;
-            padding:20px;
-        }
-        @media only screen and (max-width:600px){
-            .addNotification{
-                width:90%;
-                padding:10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./css/addNotice.css">
 </head>
 <body>
 
     <!-- add bootstarp login nav -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Admin panel</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="./index.html"
-              >Manage Events<span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./addNotice.html">Notification</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./registeredUsers.html">Manage User</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./queryList.html">Queries</a>
-          </li>
+    <?php include './navigationbar.php';?>
 
-          <li class="nav-item" id="name"></li>
-          <li class="nav-item" id="photo"></li>
-
-          <li class="nav-item" id="logout" >
-            <button
-              class="btn btn-primary"
-              href="javascript:void(0);"
-              onclick="signOut();"
-              >Sign out</button
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-     <script>
-    // Sign out the user
-      function signOut() {
-       
-        // clear local storage
-        localStorage.clear();
-        window.location.reload();
-      }
-    </script>
+     <script src="./js/signOut.js"></script>
 
      <!-- add the on load script to check the  jwt -->
-    <script>
-      window.onload = function () {
-        var jwt = localStorage.getItem("jwt");
-        if (jwt == null) {
-            window.location.href = "./login.html";
-
-        } else {
-          var name = localStorage.getItem("name");
-          var email = localStorage.getItem("email");
-          document.getElementById("name").innerHTML = name;
-          
-          document.getElementById("logout").style.display = "block";
-        }
-      };
-    </script>
+    
     <div class="container addNotification">
         <h1>Add Notification</h1>
         <form action="#" class="form addNotice">
@@ -117,53 +34,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="config.js" charset="utf-8"></script>
-<script>
-  $(function(){
-        const url = "https://us-central1-techspardha-87928.cloudfunctions.net/api/";
-
-        //recieve Notification
-        /*let recieveNotifUrl = url + 'notification'
-        $.get(recieveNotifUrl, function(result){
-            console.log(result);
-        })*/
-
-        //send notification
-        let addNotificationUrl = url + 'admin/notification'
-        //add notice
-        $('.addNotice').on('submit',function(e){
-            e.preventDefault();
-            e.stopPropagation();
-
-            let notice = $('.addNotice').find('#notification').val();
-            if(notice.length != 0){
-                let token = localStorage.getItem("jwt");
-                let data = {
-                    notif:notice,
-                    time:Date.now()
-                }
-                $.ajax({
-                    url: addNotificationUrl,
-                    data: data,
-                    type: "POST",
-                    headers: {
-                        'Content-Type': "application/x-www-form-urlencoded",
-                        'Authorization': token
-                    },
-                    success: function(result) {
-                        console.log(result);
-                        $('.addNotice')[0].reset();
-                        alert('Notification added');
-                    }
-                });
-            }
-            else{
-                alert("notification empty");
-            }
-            
-            //calculate timestamp
-
-        })
-
-  });
-</script>
+<script src="./js/addNotice.js"></script>
 </html>

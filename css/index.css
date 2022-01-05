@@ -1,0 +1,117 @@
+body{
+    background-color: teal;
+}
+.form_container{
+    width:60%;
+    background-color: white;
+    padding:30px 25px;
+}
+label[for="rules"]{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+label[for="coordinator"]{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+#rules_container{
+    border:2px solid gold;
+    border-radius: 10px;
+    padding:10px;
+
+}
+#coordinators{
+    border:2px solid turquoise;
+    border-radius: 10px;
+    padding:10px;
+}
+#coordinators .coordinator{
+    position: relative;
+    border:2px solid turquoise;
+    border-width: 2px 0 0 0;
+    padding:5px;
+}
+.form-group{
+    position: relative;
+}
+#rules_container .rule_container{
+    display: flex;
+    flex-direction: row-reverse;
+    border:2px solid gold;
+    border-width: 2px 0 0 0;
+    padding:5px;
+
+}
+#rules_container .rule_container .rule_div{
+    flex-grow:1;
+}
+.coordinator{
+    display:flex;
+}
+.coordinator .coordinator_div{
+    flex-grow: 1;
+}
+.coordinator .close_modal{
+    align-self: center;
+    height: 115px;
+}
+.close_modal{
+    align-self: flex-end;
+    flex-basis:50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media only screen and (max-width:600px){
+    .form_container{
+        width:100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+.submit{
+    width:100%;
+    height:50px;
+}
+.category.invalid{
+    border-color:tomato;
+}
+.category-text{
+    display: none;
+}
+.invalid-text{
+    color:red;
+    display: block;
+}
+#events .times{
+    display: flex;
+    justify-content: space-between;
+}
+#events .times .time_container{
+    flex-basis:45%;
+}
+.nav-item{
+    display: inline;
+}
+.search-form{
+    display: none;
+}
+.navigation{
+    display: flex;
+    justify-content: space-around;
+    width:100%;
+    padding:0;
+    align-items:center;
+}
+.navigation li {
+    font-size:20px;
+    padding:10px;
+}
+#flagship .flagship-label{
+    margin-right:20px;
+}
+.ex{
+    color:white;
+}

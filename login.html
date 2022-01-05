@@ -20,150 +20,17 @@
       name="google-signin-client_id"
       content="453063763750-2j3pc7tqnqqu8k38lo4b539pfguttg7g.apps.googleusercontent.com"
     />
-    <style>
-      body {
-        background-color: teal;
-      }
-    </style>
+    <link rel="stylesheet" href="./css/login.css">
   </head>
   <body>
     <!-- google login code -->
 
-    <script>
-      // Render Google Sign-in button
-      function renderButton() {
-        gapi.signin2.render("gSignIn", {
-          scope: "profile email",
-          width: 200,
-          height: 30,
-          longtitle: true,
-          theme: "dark",
-          onsuccess: onSuccess,
-          onfailure: onFailure,
-        });
-      }
-      // Sign-in success callback
-      async function onSuccess(googleUser) {
-        // Get the Google profile data (basic)
-        // get id token
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-        // get the profile name
-        var profile = googleUser.getBasicProfile();
-        // get the profile email
-        var email = profile.getEmail();
-        console.log("Email: " + email);
-        // get name
-        var name = profile.getName();
-        console.log("Name: " + name);
-        const url =
-          "https://us-central1-techspardha-87928.cloudfunctions.net/api/";
-        const loginUrl = url + "login";
-
-        let data = {
-          idToken: id_token,
-        };
-        $.ajax({
-          url: loginUrl,
-          data: data,
-          type: "POST",
-          success: function (result) {
-            console.log(result);
-            if (result.success == true) {
-              var jwt = result.data.token;
-              localStorage.setItem("jwt", jwt);
-              localStorage.setItem("name", name);
-              localStorage.setItem("email", email);
-              window.location.href = "./index.html";
-            } else {
-              alert("Login Failed");
-            }
-          },
-        });
-      }
-
-      // Sign-in failure callback
-      function onFailure(error) {
-        alert(error);
-      }
-
-      // Sign out the user
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          document.getElementsByClassName("userdetails")[0].innerHTML = "";
-          document.getElementsByClassName("userdetails")[0].style.display =
-            "none";
-          document.getElementById("gSignIn").style.display = "block";
-        });
-
-        auth2.disconnect();
-        // clear local storage
-        localStorage.clear();
-      }
-    </script>
+    <script src="./js/login.js"></script>
     <!-- add bootstarp login nav -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Admin panel</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="./index.html"
-              >Manage Events<span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./addNotice.html">Notification</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./registeredUsers.html">Manage User</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./queryList.html">Queries</a>
-          </li>
-
-          <li class="nav-item" id="name"></li>
-          <li class="nav-item" id="photo"></li>
-
-          <li class="nav-item" id="logout" style="display: none">
-            <a
-              class="btn btn-primary"
-              href="javascript:void(0);"
-              onclick="signOut();"
-              >Sign out</a
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <?php include './navigationbar.php';?>
 
     <!-- add the on load script to check the  jwt -->
-    <script>
-      window.onload = function () {
-        var jwt = localStorage.getItem("jwt");
-        if (jwt == null) {
-          //   window.location.href = "./login.html";
-        } else {
-          var name = localStorage.getItem("name");
-          var email = localStorage.getItem("email");
-          document.getElementById("name").innerHTML = name;
-          document.getElementById("gSignIn").style.display = "none";
-          document.getElementById("logout").style.display = "block";
-        }
-      };
-    </script>
 
     <div class="container my-5">
       <div class="col-md-12 text-center">
@@ -171,6 +38,7 @@
       </div>
     </div>
   </body>
+
   <script
     src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -182,5 +50,5 @@
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"
   ></script>
-  <script src="config.js" charset="utf-8"></script>
+  <!-- <script src="config.js" charset="utf-8"></script> -->
 </html>
