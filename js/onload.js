@@ -1,9 +1,8 @@
-alert("fasfa");
+
 window.onload = function () {
     var jwt = localStorage.getItem("jwt");
     if (jwt == null) {
-        window.location.href = "./login.html";
-
+        window.location.href = "/login";
     } else {
       var name = localStorage.getItem("name");
       var email = localStorage.getItem("email");
@@ -15,7 +14,6 @@ window.onload = function () {
       img.style.width = "35px";
       img.style.borderRadius = "50%";
 
-      
       document.getElementById("name").innerHTML = name;
       document.getElementById("name").appendChild(img);
       document.getElementById("logout").style.display = "block";

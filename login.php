@@ -28,7 +28,7 @@
     <script src="./js/login.js"></script>
     <!-- add bootstarp login nav -->
 
-    <?php include './navigationbar.php';?>
+    <!-- <?php include 'navigationbar.php';?> -->
 
     <!-- add the on load script to check the  jwt -->
 

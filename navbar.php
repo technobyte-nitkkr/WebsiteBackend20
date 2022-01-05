@@ -16,7 +16,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="/index"
+            <a class="nav-link" href="/"
               >Manage Events<span class="sr-only">(current)</span></a
             >
           </li>
@@ -43,4 +43,4 @@
           </li>
         </ul>
       </div>
-    </nav>
+</nav>

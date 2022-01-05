@@ -10,6 +10,7 @@ function renderButton() {
       onfailure: onFailure,
     });
   }
+
   // Sign-in success callback
   async function onSuccess(googleUser) {
     // Get the Google profile data (basic)
@@ -48,7 +49,7 @@ function renderButton() {
           localStorage.setItem("name", name);
           localStorage.setItem("email", email);
           localStorage.setItem("photo",photo);
-          window.location.href = "./index.html";
+          window.location.href = "/";
         } else {
           alert("Login Failed");
         }
