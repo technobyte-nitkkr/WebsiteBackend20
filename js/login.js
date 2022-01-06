@@ -45,8 +45,8 @@ function renderButton() {
         console.log(result);
         if (result.success == true) {
           var jwt = result.data.token;
-          // set jwt in cookie
-          document.cookie = "jwt=" + jwt;
+          // set jwt in cookie with path
+          document.cookie = "jwt=" + jwt + "; path=/";
           window.localStorage.setItem("jwt", jwt);
           window.localStorage.setItem("name", name);
           window.localStorage.setItem("email", email);
