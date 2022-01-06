@@ -45,10 +45,12 @@ function renderButton() {
         console.log(result);
         if (result.success == true) {
           var jwt = result.data.token;
-          localStorage.setItem("jwt", jwt);
-          localStorage.setItem("name", name);
-          localStorage.setItem("email", email);
-          localStorage.setItem("photo",photo);
+          // set jwt in cookie
+          document.cookie = "jwt=" + jwt;
+          window.localStorage.setItem("jwt", jwt);
+          window.localStorage.setItem("name", name);
+          window.localStorage.setItem("email", email);
+          window.localStorage.setItem("photo",photo);
           window.location.href = "/";
         } else {
           alert("Login Failed");

@@ -16,11 +16,12 @@ $(function(){
 
         let notice = $('.addNotice').find('#notification').val();
         if(notice.length != 0){
-            let token = localStorage.getItem("jwt");
+            let token =window.localStorage.getItem("jwt");
             let data = {
                 notif:notice,
                 time:Date.now()
             }
+
             $.ajax({
                 url: addNotificationUrl,
                 data: data,
@@ -35,13 +36,10 @@ $(function(){
                     alert('Notification added');
                 }
             });
-        }
-        else{
+        } else{
             alert("notification empty");
         }
         
         //calculate timestamp
-
     })
-
 });

@@ -1,5 +1,4 @@
 $(function(){
-
     const $form = $('#events');
 
     //reset form
@@ -37,7 +36,6 @@ $(function(){
                     let $option = $('<option value='+event.eventName.replace(/ /g,"$")+'>'+event.eventName+'</option>');
                     $event.append($option);
                 });
-
             });
             $('#search_category').trigger('change');
             $('.search-form #event-search').removeAttr('disabled');
@@ -51,17 +49,15 @@ $(function(){
         for(let value of categories){
             categoriesHTML = categoriesHTML + "<option value='" + value.replace(/ /g,"$") + "'>" + value + "</option>";
         }
+
         //document.getElementById('category').innerHTML = categoriesHTML;
         $('#search_category, #category').each(function(){
             $(this).html(categoriesHTML);
         });
         //populate event select
         refresh_events();
-        
     });
     
-    
-
     //switch add and update
     const $navbar = $("nav");
     $navbar.on('click','li',function(){
@@ -75,16 +71,14 @@ $(function(){
             $form.find('#category').attr('disabled',true);
             $form.find('#event_name').attr('disabled',true);
             refresh_events();
-        }  
-        else{
+        }   else{
             $('.search-form').css('display','none');
             $('.heading').text('Add Event');
             $form.find('#category').removeAttr('disabled');
             $form.find('#event_name').removeAttr('disabled');
-            
         }
+
         resetForm();
-        
     })
 
     //add rules and coordinators
@@ -97,7 +91,6 @@ $(function(){
             $(this).parent().remove();
         })
         $cor_container.prepend($newCoordinator);
-
     })
     const $rules_container = $('#rules_container .hold_rules');
     $('#add_rules').on('click',function(e){
@@ -116,8 +109,7 @@ $(function(){
         if(!(val === 'select')){
             $(this).removeClass('invalid');
             $(this).next('small').removeClass('invalid-text');
-        }
-        else{
+        } else{
             $(this).addClass('invalid');
             $(this).next('small').addClass('invalid-text');
         }
@@ -166,7 +158,7 @@ $(function(){
             let finalForm = {"eventData" : jsonForm}
             let requestPostUrl = url + "events";
 
-            let token = localStorage.getItem('jwt');
+            let token =window.localStorage.getItem('jwt');
             $.ajax({
                    url: requestPostUrl,
                    data: finalForm,
@@ -176,17 +168,15 @@ $(function(){
                      'Authorization': token
                    },
                    success: function(result, status) {
-                        if(status == 'success')
-                        {
+                        if(status == 'success') {
                           alert('Data input Successful');
                         }
+
                         //clearing form
                         resetForm();
                         },
-
                 });
         }
-
     })
 
     //to get event eventData
@@ -205,26 +195,31 @@ $(function(){
                         break;
                     }
                 }
+
                 resetForm();
                 res(eventData);
             });
         })
     }
+
     //getEventData('coding', 'gamestation');
     function getDateTime(timestamp){
         let myDate = {
             date:null,
             time:null
         }
+
         let date = timestamp.toLocaleDateString();
         let z = date.split('/');
         z.reverse();
         if(z[1].length == 1){
             z[1] = '0'+z[1];
         }
+
         if(z[2].length == 1){
             z[2] = '0'+z[2];
         }
+
         //swap month and date to match html date format
         let m = z[1];
         z[1] = z[2];
@@ -233,8 +228,8 @@ $(function(){
         myDate.time = timestamp.toTimeString().slice(0,8);
 
         return myDate;
-
     }
+
     //update functionality
     $('.search-form').on('submit',function(e){
         e.preventDefault();
@@ -264,6 +259,7 @@ $(function(){
                     $cor_container.append($c);
                 });
             }
+
             if(event.rules!=undefined){
                 event.rules.forEach(function(rule){
                     let $r = $rule.clone();
@@ -285,11 +281,8 @@ $(function(){
             let end = getDateTime(endTimeStamp);
             $form.find('#endDate').val(end.date);
             $form.find('#endTime').val(end.time);
-
-
         }).catch(function(e){
             console.log(e);
         })
-
     })
 })

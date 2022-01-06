@@ -2,7 +2,6 @@
 window.onload = function () {
     var jwt = localStorage.getItem("jwt");
     if (jwt == null) {
-        window.location.href = "/login";
     } else {
       var name = localStorage.getItem("name");
       var email = localStorage.getItem("email");
