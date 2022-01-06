@@ -8,6 +8,7 @@
 
 ?> -->
 <script src="./js/onload.js"></script>
+<script src="./js/signOut.js"></script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">Admin panel</a>
       <button

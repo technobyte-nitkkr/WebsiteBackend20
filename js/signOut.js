@@ -3,5 +3,6 @@ function signOut() {
     // clear local storage
     localStorage.clear();
     window.localStorage.clear();
-    window.location.reload();
+    window.document.cookie = "";
+    window.location="/login.php";
   }
