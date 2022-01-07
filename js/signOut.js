@@ -4,7 +4,10 @@ function signOut() {
     console.log("signout");
     localStorage.clear();
     window.localStorage.clear();
-    Cookies.remove("jwt", { path: "/", domain: document.domain });
+    Object.keys(Cookies.get()).forEach(function (cookieName) {
+        Cookies.remove(cookieName);
+        console.log(cookieName);
+    });
     // remove jwt from local storage
     window.location.reload();
   }
