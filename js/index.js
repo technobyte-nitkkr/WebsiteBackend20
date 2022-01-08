@@ -13,7 +13,7 @@ $(function () {
   let $rule = $(".rule_container").detach();
 
   //add categories to options list
-  const url = "https://us-central1-techspardha-87928.cloudfunctions.net/api/";
+  const url = "https://techspardhabackend.herokuapp.com/";
   const requestCategoriesUrl = url + "events/categories";
   const requestEventsUrl = url + "events";
 

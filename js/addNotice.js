@@ -1,5 +1,5 @@
 $(function () {
-  const url = "https://us-central1-techspardha-87928.cloudfunctions.net/api/";
+  const url = "https://techspardhabackend.herokuapp.com/";
 
   //send notification
   let addNotificationUrl = url + "admin/notification";
@@ -29,6 +29,9 @@ $(function () {
           $(".addNotice")[0].reset();
           alert("Notification added");
         },
+        error: function (err) {
+          console.log(err);
+        }
       });
     } else {
       alert("notification empty");

@@ -30,7 +30,7 @@ async function onSuccess(googleUser) {
   var photo = profile.getImageUrl();
   console.log("Photo: " + photo);
 
-  const url = "https://us-central1-techspardha-87928.cloudfunctions.net/api/";
+  const url = "https://techspardhabackend.herokuapp.com/";
   const loginUrl = url + "login";
 
   let data = {

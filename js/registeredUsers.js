@@ -1,5 +1,5 @@
 $(function () {
-  const url = "https://us-central1-techspardha-87928.cloudfunctions.net/api/";
+  const url = "https://techspardhabackend.herokuapp.com/";
   const requestCategoriesUrl = url + "events/categories";
   let token = localStorage.getItem("jwt");
   $.get(requestCategoriesUrl, function (result) {
