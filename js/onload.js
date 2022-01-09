@@ -2,6 +2,10 @@ window.onload = function () {
   var jwt = localStorage.getItem("jwt");
   if (jwt == null) {
   } else {
+    if(localStorage.getItem("role") == "user"){
+      window.location.href = "/error.php";
+    }
+
     var name = localStorage.getItem("name");
     var email = localStorage.getItem("email");
     var photo = localStorage.getItem("photo");

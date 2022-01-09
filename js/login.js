@@ -50,6 +50,9 @@ async function onSuccess(googleUser) {
       if (result.success == true) {
         var jwt = result.data.token;
         // set jwt in cookie with path
+        const  user = result.data.user;
+        console.log(user);
+        const { role } = user;
         Cookies.set("jwt", jwt, {
           expires: 1,
           path: "/",
@@ -59,6 +62,7 @@ async function onSuccess(googleUser) {
         window.localStorage.setItem("name", name);
         window.localStorage.setItem("email", email);
         window.localStorage.setItem("photo", photo);
+        window.localStorage.setItem("role", role);
         window.location.href = "/";
       } else {
         alert("Login Failed");

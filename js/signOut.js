@@ -7,5 +7,5 @@ async function signOut() {
   // clear cookies
   await Cookies.remove("jwt", { path: "/", domain: document.domain });
 
-  window.location.reload();
+  window.location.href = "/";
 }

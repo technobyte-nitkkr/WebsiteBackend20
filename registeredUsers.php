@@ -43,6 +43,45 @@
         <div class="download">
             <button class="btn btn-primary" id="download" disabled>download file</b>
         </div>
+
+        <!-- empty div to load email form-->
+        <div id="email_form" hidden>
+
+            <form action="#" class="form emailForm">
+                <div class="form-group">
+                    <!-- heading -->
+                    <div class="form-group">
+                        <input type="text" name="subject" id="subject" class="form-control" placeholder=" subject">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="heading" id="heading"  class="form-control" placeholder=" heading">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="buttontext" id="buttontext" class="form-control" placeholder=" btn-text">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="buttonlink" id="buttonlink" class="form-control" placeholder=" btn-link">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="thankyou" id="thankyou" class="form-control" placeholder=" thankyou">
+                    </div>
+                    <textarea name="detail"  id="detail" rows="10" placeholder="type the email body" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="SUBMIT" />
+                </div>
+            </form>
+        </div>
+
+
+        
+
+
+        <div class="send_email">
+            <button class="btn btn-primary" id="send_email" disabled>Send Email</b>
+
+        </div>
+
     </div>
 </body>
 <script src="js/CSVExport.js"></script>

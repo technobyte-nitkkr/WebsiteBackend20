@@ -78,6 +78,33 @@ $(function () {
     });
   }
 
+  function sendmail(mail)
+  {
+    let token = localStorage.getItem("jwt");
+     $.ajax({
+      url:
+        url +
+        "admin/mail/category",
+      type: "POST",
+      data : mail,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: token,
+      },
+      success: function (mydata) {
+        console.log(mydata);
+        alert("Mail Sent");
+        window.location.reload();
+      },
+      error: function (mydata) {
+        console.log(mydata);
+        alert("Mail not sent");
+        window.location.reload();
+      }
+    });
+    // reload
+  }
+
   $("#search-event").on("submit", function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -111,6 +138,50 @@ $(function () {
 
         registeredData(mydata.data).then(function (users) {
           console.log(users);
+          $("#send_email").removeAttr("disabled");
+          // add on click event to email button
+          $("#send_email").on("click", function () {
+            $("#email_form").removeAttr("hidden");
+            $("#send_email").attr("disabled", true);
+          });
+          $(".emailForm").on("submit", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            // get the form values
+
+            let subject = $(".emailForm").find("#subject").val();
+            let heading = $(".emailForm").find("#heading").val();
+            let buttontext = $(".emailForm").find("#buttontext").val();
+            let buttonlink = $(".emailForm").find("#buttonlink").val();
+            let thankyou = $(".emailForm").find("#thankyou").val();
+            let detail = $(".emailForm").find("#detail").val();
+
+            // check if anyting is empty
+            if (
+              subject == "" ||
+              heading == "" ||
+              buttontext == "" ||
+              buttonlink == "" ||
+              thankyou == "" ||
+              detail == ""
+            ) {
+              alert("Please fill all the fields");
+              return false;
+            }
+
+            let mail = {
+              subject: subject,
+              heading: heading,
+              buttontext: buttontext,
+              buttonlink: buttonlink,
+              thankyou: thankyou,
+              detail: detail,
+              eventCategory: eventCategory,
+              eventName: eventName,
+            };
+            sendmail(mail);
+          });
+
           $("#download").removeAttr("disabled");
           $("#download").text(
             "download " + eventName.replace(/\+/g, " ") + " participant list"
