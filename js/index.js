@@ -20,30 +20,37 @@ $(function () {
   function refresh_events() {
     let events;
 
-    $.get(requestEventsUrl, function (result) {
-      let data = result.data;
-      events = data;
+    $.ajax({
+      url: requestEventsUrl,
+      type: "GET",
+      headers: {
+        "Cache-Control": "no-cache",
+      },
+      success: function (result) {
+        let data = result.data;
+        events = data;
 
-      $("#search_category").on("change", function () {
-        let option = $(this).find("option:selected").val();
-        let eventList = [];
-        eventList = events.events.filter(function (event) {
-          if (event.eventCategory === option) return true;
+        $("#search_category").on("change", function () {
+          let option = $(this).find("option:selected").val();
+          let eventList = [];
+          eventList = events.events.filter(function (event) {
+            if (event.eventCategory === option) return true;
+          });
+          let $event = $("#event").html("");
+          eventList.forEach(function (event) {
+            let $option = $(
+              "<option value=" +
+                event.eventName.replace(/ /g, "$") +
+                ">" +
+                event.eventName +
+                "</option>"
+            );
+            $event.append($option);
+          });
         });
-        let $event = $("#event").html("");
-        eventList.forEach(function (event) {
-          let $option = $(
-            "<option value=" +
-              event.eventName.replace(/ /g, "$") +
-              ">" +
-              event.eventName +
-              "</option>"
-          );
-          $event.append($option);
-        });
-      });
-      $("#search_category").trigger("change");
-      $(".search-form #event-search").removeAttr("disabled");
+        $("#search_category").trigger("change");
+        $(".search-form #event-search").removeAttr("disabled");
+      },
     });
   }
 
@@ -146,7 +153,7 @@ $(function () {
         rules: [],
         coordinators: [],
         poster: "",
-        document: ""
+        document: "",
       };
 
       const $form = $("#events");
@@ -179,10 +186,10 @@ $(function () {
       });
       jsonForm.poster = $form.find("#poster").val();
       jsonForm.document = $form.find("#document").val();
-      let data = {eventData: jsonForm};
+      let data = { eventData: jsonForm };
       let requestPostUrl = url + "events";
       // convert data to url encoded string
-   
+
       let token = window.localStorage.getItem("jwt");
       $.ajax({
         url: requestPostUrl,
@@ -191,12 +198,13 @@ $(function () {
         headers: {
           "Content-Type": "application/json",
           Authorization: token,
+          "Cache-Control": "no-cache",
         },
         success: function (result, status) {
           if (status == "success") {
             console.log(result);
             // console.log(jsonForm.eventData);
-            
+
             alert("Data input Successful");
           }
 
@@ -214,9 +222,16 @@ $(function () {
     $("#events").css("opacity", "0.4");
     let eventData = {};
     return new Promise(function (res) {
-      $.get(
-        requestEventDataUrl,
-        { eventCategory: eventCategory },
+      $.ajax({
+        url: requestEventDataUrl,
+        data: {
+          eventCategory: eventCategory,
+        },
+        type: "GET",
+        headers: {
+          "Cache-Control": "no-cache",
+        },
+        success: 
         function (result) {
           let data = result.data;
           let allData = data.events;
@@ -230,7 +245,7 @@ $(function () {
           resetForm();
           res(eventData);
         }
-      );
+      });
     });
   }
 
