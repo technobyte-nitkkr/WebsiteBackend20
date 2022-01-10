@@ -115,12 +115,8 @@
                 <div class="hold_coordinators"></div>
             </div>
             <div class="form-group">
-                <label for="poster">Add poster / Folder Link (Google drive)</label>
-                <input type="text" name="poster" id="poster" class="poster_link form-control">
-            </div>
-            <div class="form-group">
-                <label for="document">Add document / Folder Link (Google drive)</label>
-                <input type="text" name="document" id="document" class="document form-control">
+                <label for="file">Add File / Folder Link (Google drive)</label>
+                <input type="text" name="file" id="file" class="file_link form-control">
             </div>
             <div class="form-group">
                 <input type="submit" value="SUBMIT" class="submit btn btn-success">
