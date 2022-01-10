@@ -146,7 +146,7 @@ $(function () {
         rules: [],
         coordinators: [],
         poster: "",
-        document: "",
+        document: ""
       };
 
       const $form = $("#events");
@@ -179,23 +179,24 @@ $(function () {
       });
       jsonForm.poster = $form.find("#poster").val();
       jsonForm.document = $form.find("#document").val();
-      let finalForm = { eventData: jsonForm };
+      let data = {eventData: jsonForm};
       let requestPostUrl = url + "events";
-
+      // convert data to url encoded string
+   
       let token = window.localStorage.getItem("jwt");
       $.ajax({
         url: requestPostUrl,
-        data: finalForm,
+        data: JSON.stringify(data),
         type: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
           Authorization: token,
         },
         success: function (result, status) {
           if (status == "success") {
             console.log(result);
             // console.log(jsonForm.eventData);
-            console.log(finalForm);
+            
             alert("Data input Successful");
           }
 
