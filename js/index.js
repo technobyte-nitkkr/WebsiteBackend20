@@ -145,7 +145,8 @@ $(function () {
         description: "",
         rules: [],
         coordinators: [],
-        file: null,
+        poster: "",
+        document: "",
       };
 
       const $form = $("#events");
@@ -176,7 +177,8 @@ $(function () {
       $form.find(".rule_container").each(function () {
         jsonForm.rules.push($(this).find(".rule").val());
       });
-      jsonForm.file = $form.find("#file").val();
+      jsonForm.poster = $form.find("#poster").val();
+      jsonForm.document = $form.find("#document").val();
       let finalForm = { eventData: jsonForm };
       let requestPostUrl = url + "events";
 
@@ -191,6 +193,9 @@ $(function () {
         },
         success: function (result, status) {
           if (status == "success") {
+            console.log(result);
+            // console.log(jsonForm.eventData);
+            console.log(finalForm);
             alert("Data input Successful");
           }
 
@@ -283,7 +288,8 @@ $(function () {
           .attr("checked", true);
         $form.find("#venue").val(event.venue);
         $form.find("#event_description").val(event.description);
-        $form.find("#file").val(event.file);
+        $form.find("#poster").val(event.poster);
+        $form.find("#document").val(event.document);
         if (event.coordinators != undefined) {
           event.coordinators.forEach(function (coordinator) {
             let $c = $coordinator.clone();
