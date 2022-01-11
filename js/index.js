@@ -56,16 +56,19 @@ $(function () {
 
   $.get(requestCategoriesUrl, function (result) {
     let data = result.data;
+ 
     let categories = data.categories;
     let categoriesHTML =
       "<option value='select' selected>select category</option>";
-    for (let value of categories) {
+    for (var value of categories) {
+      let category = value["categoryName"].toString();
+   
       categoriesHTML =
         categoriesHTML +
         "<option value='" +
-        value.replace(/ /g, "$") +
+        category.replace(/ /g, "$") +
         "'>" +
-        value +
+        category +
         "</option>";
     }
 
