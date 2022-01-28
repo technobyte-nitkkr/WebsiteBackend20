@@ -50,6 +50,7 @@ async function onSuccess(googleUser) {
       if (result.success == true) {
         var jwt = result.data.token;
         // set jwt in cookie with path
+        console.log(result.data);
         const  user = result.data.user;
         console.log(user);
         const { role } = user;
