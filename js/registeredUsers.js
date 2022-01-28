@@ -1,5 +1,5 @@
 $(function () {
-  const url = "https://techspardhabackend.herokuapp.com/";
+  const url = "https://us-central1-techspardha-87928.cloudfunctions.net/api2/";
   const requestCategoriesUrl = url + "events/categories";
   let token = localStorage.getItem("jwt");
   $.get(requestCategoriesUrl, function (result) {
@@ -10,9 +10,9 @@ $(function () {
       categoriesHTML =
         categoriesHTML +
         "<option value='" +
-        value.replace(/ /g, "+") +
+        value.categoryName.replace(/ /g, "+") +
         "'>" +
-        value +
+        value.categoryName +
         "</option>";
     }
 
