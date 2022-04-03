@@ -187,8 +187,8 @@ $(function () {
       $form.find(".rule_container").each(function () {
         jsonForm.rules.push($(this).find(".rule").val());
       });
-      jsonForm.poster = $form.find("#poster").val();
-      jsonForm.document = $form.find("#document").val();
+      // jsonForm.poster = $form.find("#poster").val();
+      // jsonForm.document = $form.find("#document").val();
       let data = { eventData: jsonForm };
       let requestPostUrl = url + "events";
       // convert data to url encoded string

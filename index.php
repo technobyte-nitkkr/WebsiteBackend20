@@ -116,12 +116,10 @@
             </div>
             <div class="form-group">
                 <label for="poster">Add poster / Folder Link (Google drive)</label>
-                <input type="text" name="poster" id="poster" class="poster_link form-control">
+                <br>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7qrWewGF4Zie-dEAXV1OvBStuW3qZ9H-p-o09GKYRIEQ4sw/viewform?usp=sf_link"> Upload images to this google form <a/>
             </div>
-            <div class="form-group">
-                <label for="document">Add document / Folder Link (Google drive)</label>
-                <input type="text" name="document" id="document" class="document form-control">
-            </div>
+         
             <div class="form-group">
                 <input type="submit" value="SUBMIT" class="submit btn btn-success">
             </div>
