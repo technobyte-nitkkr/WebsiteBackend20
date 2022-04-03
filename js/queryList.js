@@ -58,6 +58,7 @@ $(function () {
   $.ajax({
     url: requestQueriesUrl,
     type: "GET",
+    cache: false,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: token,

@@ -86,6 +86,7 @@ $(function () {
         url +
         "admin/mail/category",
       type: "POST",
+      cache: false,
       data : mail,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -122,6 +123,7 @@ $(function () {
         "&eventName=" +
         eventName,
       type: "GET",
+      cache: false,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: token,

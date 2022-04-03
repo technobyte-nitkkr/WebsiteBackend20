@@ -23,6 +23,7 @@ $(function () {
     $.ajax({
       url: requestEventsUrl,
       type: "GET",
+      cache: false,
       headers: {
         "Cache-Control": "no-cache",
       },
@@ -198,6 +199,7 @@ $(function () {
         url: requestPostUrl,
         data: JSON.stringify(data),
         type: "POST",
+        cache:false,
         headers: {
           "Content-Type": "application/json",
           Authorization: token,
@@ -234,6 +236,7 @@ $(function () {
           eventCategory: eventCategory,
         },
         type: "GET",
+        cache: false,
         success: function (result) {
           let data = result.data;
           let allData = data.events;
