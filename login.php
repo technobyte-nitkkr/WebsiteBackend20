@@ -13,7 +13,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
     <meta name="google-signin-client_id"
-        content="453063763750-2j3pc7tqnqqu8k38lo4b539pfguttg7g.apps.googleusercontent.com" />
+        content="14707849805-il84msmthglkq4sqqb9ehoanjmq9ovau.apps.googleusercontent.com" />
     <link rel="stylesheet" href="./css/login.css">
 </head>
 
