@@ -115,9 +115,19 @@
                 <div class="hold_coordinators"></div>
             </div>
             <div class="form-group">
-                <label for="poster">Add poster / Folder Link (Google drive)</label>
-                <br>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7qrWewGF4Zie-dEAXV1OvBStuW3qZ9H-p-o09GKYRIEQ4sw/viewform?usp=sf_link"> Upload images to this google form <a/>
+                <label for="poster">Upload Image/ Poster </label>
+                <input type="text" disabled name="poster" id="poster" class="poster_link form-control">
+                
+            </div>
+            <div class="form-group">
+                <label for="poster-prev">Image Preview</label>
+                <img id="poster-prev" src ="" alt="poster-preview" width="150px" >
+                
+            </div>
+              <button class="btn btn-primary" href="javascript:void(0);" onclick="openWidget();">Upload File</button>
+            <div class="form-group">
+                <label for="document">Add any document / Folder Link (Google drive) for results or any info about event</label>
+                <input type="text" name="document" id="document" class="document form-control">
             </div>
          
             <div class="form-group">
@@ -154,6 +164,7 @@
 
 
 </body>
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 </script>
@@ -163,5 +174,6 @@
 </script>
 <!-- <script src="config.js" charset="utf-8"></script> -->
 <script src="./js/index.js"></script>
+<script src="./js/cloudinary.js"></script>
 
 </html>

@@ -187,8 +187,8 @@ $(function () {
       $form.find(".rule_container").each(function () {
         jsonForm.rules.push($(this).find(".rule").val());
       });
-      // jsonForm.poster = $form.find("#poster").val();
-      // jsonForm.document = $form.find("#document").val();
+      jsonForm.poster = $form.find("#poster").val();
+      jsonForm.document = $form.find("#document").val();
       let data = { eventData: jsonForm };
       let requestPostUrl = url + "events";
       // convert data to url encoded string
@@ -262,11 +262,11 @@ $(function () {
     let date = timestamp.toLocaleDateString();
     let z = date.split("/");
     z.reverse();
-    if (z[1].length == 1) {
+    if (z[1]?.length == 1) {
       z[1] = "0" + z[1];
     }
 
-    if (z[2].length == 1) {
+    if (z[2]?.length == 1) {
       z[2] = "0" + z[2];
     }
 
@@ -299,6 +299,7 @@ $(function () {
         $form.find("#category").removeClass("invalid");
         $form.find("#category").next("small").removeClass("invalid-text");
         $form.find("#event_name").val(event.eventName);
+        
         let flagship = event.flagship != undefined ? event.flagship : false;
         $form
           .find("#flagship")
@@ -308,6 +309,8 @@ $(function () {
         $form.find("#venue").val(event.venue);
         $form.find("#event_description").val(event.description);
         $form.find("#poster").val(event.poster);
+        // add preview
+        $form.find("#poster-prev").attr("src", event.poster);
         $form.find("#document").val(event.document);
         if (event.coordinators != undefined) {
           event.coordinators.forEach(function (coordinator) {
