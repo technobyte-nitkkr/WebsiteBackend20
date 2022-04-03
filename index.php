@@ -124,7 +124,7 @@
                 <img id="poster-prev" src ="" alt="poster-preview" width="150px" >
                 
             </div>
-              <button class="btn btn-primary" href="javascript:void(0);" onclick="openWidget();">Upload File</button>
+              <button  type="button" class="btn btn-primary" href="javascript:void(0);" onclick="openWidget();">Upload File</button>
             <div class="form-group">
                 <label for="document">Add any document / Folder Link (Google drive) for results or any info about event</label>
                 <input type="text" name="document" id="document" class="document form-control">

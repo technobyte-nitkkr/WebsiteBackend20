@@ -227,15 +227,14 @@ $(function () {
     return new Promise(function (res) {
       $.ajax({
         url: requestEventDataUrl,
+        headers: {
+          "Cache-Control": "no-cache",
+        },
         data: {
           eventCategory: eventCategory,
         },
         type: "GET",
-        headers: {
-          "Cache-Control": "no-cache",
-        },
-        success: 
-        function (result) {
+        success: function (result) {
           let data = result.data;
           let allData = data.events;
           for (let value of allData) {
@@ -247,7 +246,7 @@ $(function () {
 
           resetForm();
           res(eventData);
-        }
+        },
       });
     });
   }
