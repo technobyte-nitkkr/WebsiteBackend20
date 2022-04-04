@@ -7,6 +7,7 @@ $(function () {
     $form.find(".hold_rules").html("");
     $form.find(".hold_coordinators").html("");
     $form.find("#category").trigger("change");
+     $form.find("#poster-prev").attr("src", "");
   }
 
   let $coordinator = $(".coordinator").detach();
