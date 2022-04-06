@@ -21,8 +21,9 @@
              <li class="nav-item active">
                  <a class="nav-link" href="index.php">Manage Events<span class="sr-only">(current)</span></a>
              </li>
+           
              <li class="nav-item">
-                 <a class="nav-link" href="addNotice.php">Notification</a>
+                 <a class="nav-link" href="notification.php">Moblie Notification</a>
              </li>
              <li class="nav-item">
                  <a class="nav-link" href="registeredUsers.php">Manage User</a>
