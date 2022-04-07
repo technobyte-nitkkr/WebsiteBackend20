@@ -29,23 +29,6 @@ $(function () {
       };
 
       $.ajax({
-        url: addNotificationUrl,
-        data: data,
-        type: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: token,
-        },
-        success: function (result) {
-          console.log(result);
-          $(".addNotice")[0].reset();
-          alert("Notification added");
-        },
-        error: function (err) {
-          console.log(err);
-        }
-      });
-      $.ajax({
         url: addMobileNoti,
         data: data2,
         type: "POST",
