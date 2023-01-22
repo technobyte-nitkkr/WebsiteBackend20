@@ -1,3 +1,4 @@
+<?php include 'navigationbar.php';?>
 <!DOCTYPE html>
 <html>
 
@@ -13,7 +14,7 @@
 
 <body>
     <!-- add bootstarp login nav -->
-    <?php include 'navigationbar.php';?>
+    
 
     <script src="./js/signOut.js"></script>
 
