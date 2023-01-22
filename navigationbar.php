@@ -1,4 +1,4 @@
- <?php
+<?php
  if(!isset($_COOKIE["jwt"])|| $_COOKIE["jwt"]=="")
  {
   header("Location: login.php");
