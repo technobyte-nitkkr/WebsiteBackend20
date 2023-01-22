@@ -31,7 +31,7 @@ async function onSuccess(googleUser) {
   console.log("Photo: " + photo);
 
   const url = "https://us-central1-techspardha-87928.cloudfunctions.net/api2/";
-  const loginUrl = url + "login";
+  const loginUrl = url + "loginApp";
 
   let data = {
     idToken: id_token,
