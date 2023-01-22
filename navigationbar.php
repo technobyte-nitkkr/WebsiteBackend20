@@ -1,10 +1,3 @@
-<html>
-<?php
-if(!isset($_COOKIE["jwt"])|| $_COOKIE["jwt"]=="")
-{
-header("Location: login.php");
-}
-?>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"
      integrity="sha512-JjYSgzqo9K0IeYGEslMRYE8aO9tq7Ky3EQNmEVkAe6Cp14AwlJMLMnb0fpgEkr3YxJ8ghQiriOvZwIdRZieGIQ=="
      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
