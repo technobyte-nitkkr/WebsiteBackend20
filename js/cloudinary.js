@@ -1,6 +1,8 @@
+// techpardha 1-9
+var clouds = ['techspardha1', 'techspardha2', 'techspardha3', 'techspardha4', 'techspardha5', 'techspardha6', 'techspardha7', 'techspardha8', 'techspardha9'];
 var myWidget = cloudinary.createUploadWidget(
   {
-    cloudName: "techspardha-live",
+    cloudName: clouds[Math.floor(Math.random() * clouds.length)],
     uploadPreset: "techspardha",
   },
   (error, result) => {
