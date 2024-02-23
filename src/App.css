@@ -4,6 +4,17 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.form-group .input-field,.form-group .form-control,
+.form-group .input-field,.form-group .form-control::placeholder {
+  background-color: #2c2f33;
+  color: white;
+}
+
+.form-group .input-field,.form-group .form-control:focus {
+  background-color: #4c5058;
+  /* Change the background color for the focused state */
+}
+
 .query {
   background-color: #2c2f33;
   min-height: 600px;
@@ -14,7 +25,7 @@ body {
 
 table {
   min-width: 700px;
-  color: #f5f5f5;
+  /* color: #f5f5f5; */
   border-collapse: collapse;
 }
 

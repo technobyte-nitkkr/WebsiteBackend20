@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { getToken } from "./auth";
 import Coordinator from "./Cordinator";
-import Rule from "./Rule";
+ import Rule from "./Rule";
 
-const Events = ({ }) => {
+const Events = ({ setBusy ,allEvents, categories }) => {
     const [isEdit, setIsEdit] = useState(true);
     const [image, setImage] = useState(null);
     const [startDate, setStartDate] = useState("");
     const [startTime, setStartTime] = useState("");
     const [endDate, setEndDate] = useState("");
     const [endTime, setEndTime] = useState("");
-    const [categories, setCategories] = useState([]);
     const [events, setEvents] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("select");
     const [selectedEvent, setSelectedEvent] = useState("select");
@@ -28,7 +28,6 @@ const Events = ({ }) => {
     });
 
     useEffect(() => {
-        fetchCategories();
         setSelectedCategory("select");
     }, []);
 
@@ -77,49 +76,39 @@ const Events = ({ }) => {
         });
     }
 
-    const fetchCategories = async () => {
-        const response = await fetch("https://us-central1-techspardha-87928.cloudfunctions.net/api2/events/categories");
-        const data = await response.json();
-        console.log(data);
-        setCategories(data.data.categories);
-        setSelectedEvent("select");
-    };
-
-    const fetchEvents = async (selectedCategory) => {
-        if (selectedCategory === "select") {
-            // setEvents([]);
-            setSelectedEvent("select");
-            return;
-        }
-
-        const response = await fetch("https://us-central1-techspardha-87928.cloudfunctions.net/api2/events?eventCategory=" + selectedCategory);
-        const data = await response.json();
-        console.log(data.data);
-        setEvents(data.data.events);
-    };
-
     const fetchFormData = async (selectedEvent) => {
         if (selectedEvent === "select") {
            resetForm();
             return;
         }
 
-        const response = await fetch(`https://us-central1-techspardha-87928.cloudfunctions.net/api2/events/description?eventCategory=${selectedCategory}&eventName=${selectedEvent}`);
-        const data = await response.json();
-        console.log(data);
-        let startDateTime = getDateTime(new Date(data.data.startTime));
-        let endDateTime = getDateTime(new Date(data.data.endTime));
+         try {
+            setBusy(true);
+             const response = await fetch(`https://us-central1-techspardha-87928.cloudfunctions.net/api2/events/description?eventCategory=${selectedCategory}&eventName=${selectedEvent}`);
+             const data = await response.json();
+             console.log(data);
+             let startDateTime = getDateTime(new Date(data.data.startTime));
+             let endDateTime = getDateTime(new Date(data.data.endTime));
 
-        setFormData({ ...data.data });
-        setStartDate(startDateTime.date);
-        setStartTime(startDateTime.time);
-        setEndDate(endDateTime.date);
-        setEndTime(endDateTime.time);
+             setFormData({ ...data.data });
+             setStartDate(startDateTime.date);
+             setStartTime(startDateTime.time);
+             setEndDate(endDateTime.date);
+             setEndTime(endDateTime.time);
+         } catch (error) {
+                console.log(error);
+                alert("Error fetching event data");
+            } finally {
+                setBusy(false);
+            }
     };
 
     const handleCategoryChange = (e) => {
-        setSelectedCategory(e.target.value);
-        fetchEvents(e.target.value);
+        const option = e.target.value;
+        setSelectedCategory(option);
+        const eventList = allEvents.filter((event) => event.eventCategory === option);
+        console.log(eventList);
+        setEvents(eventList);
     };
 
     function getDateTime(timestamp) {
@@ -201,7 +190,7 @@ const Events = ({ }) => {
         e.preventDefault();
 
         // Basic validation
-        if(image === null || formData.poster === "") {
+        if(image === null && formData.poster === "") {
             alert("Please upload a poster.");
             return;
         }
@@ -234,22 +223,23 @@ const Events = ({ }) => {
         // Additional validation for date/time format can be added here
 
         console.log(formData);
-        // fetch("https://us-central1-techspardha-87928.cloudfunctions.net/api2/events", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(formData),
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log("Success:", data);
-        //         alert("Event Added Successfully");
-        //     })
-        //     .catch((error) => {
-        //         console.error("Error:", error);
-        //         alert("Error Adding Event");
-        //     });
+        fetch("https://us-central1-techspardha-87928.cloudfunctions.net/api2/events", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': getToken(),
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Success:", data);
+                alert("Event Added/Updated Successfully");
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                alert("Error Adding Event");
+            });
     };
 
     useEffect(() => {
@@ -268,12 +258,13 @@ const Events = ({ }) => {
 
     return (
         <div className="container mt-3">
+           
             {/* add toggle to add or upate event */}
             {isEdit ? <h1>Update Event</h1> : <h1>Add Event</h1>}
             {/* toggle */}
             <div className="form-check form-switch">
                 <input
-                    className="form-check-input"
+                    className="form-check-input input-field"
                     type="checkbox"
                     id="flexSwitchCheckDefault"
                     onChange={() => setIsEdit(!isEdit)}
@@ -292,7 +283,7 @@ const Events = ({ }) => {
                         name="category"
                         id="category"
                         disabled={categories.length === 0}
-                        className="form-control"
+                        className="form-control input-field"
                         value={selectedCategory}
 
                         onChange={handleCategoryChange}
@@ -312,7 +303,7 @@ const Events = ({ }) => {
                             name="events"
                             id="events"
                             disabled={selectedCategory === "select" || events.length === 0}
-                            className="form-control"
+                            className="form-control input-field"
                             value={selectedEvent}
                             onChange={handleEventChange}
                         >
