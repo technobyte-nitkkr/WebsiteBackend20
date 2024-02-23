@@ -1,0 +1,142 @@
+body {
+  background-color: #1c1e21;
+  color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+.query {
+  background-color: #2c2f33;
+  min-height: 600px;
+  margin-top: 30px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+table {
+  min-width: 700px;
+  color: #f5f5f5;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 10px;
+  border: 1px solid #333;
+}
+
+.email_col {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+  background-color: #3a3c3d;
+}
+
+.delete {
+  background-color: #a94442;
+  transition: all 0.3s;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.delete:hover,
+.delete:focus {
+  background-color: #843539;
+}
+
+.delete svg {
+  width: 30px;
+  height: 30px;
+  margin: auto;
+  position: relative;
+  fill: #f5f5f5;
+  display: block;
+}
+
+#rules_container {
+  border: 2px solid grey;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.form-group {
+  position: relative;
+}
+
+#rules_container .rule_container {
+  display: flex;
+  flex-direction: row;
+  border: 2px solid grey;
+  border-width: 2px 0 0 0;
+  padding: 5px;
+}
+
+#rules_container .rule_container .rule_div {
+  flex-grow: 1;
+}
+
+.coordinator {
+  display: flex;
+}
+
+.coordinator .coordinator_div {
+  flex-grow: 1;
+}
+
+.coordinator .close_modal {
+  align-self: center;
+  height: 115px;
+}
+
+.replied {
+  background-color: #1c1e21;
+  text-align: center;
+  padding: 10px;
+}
+
+.registered {
+  width: 65%;
+  margin-top: 30px;
+  padding: 25px;
+  background-color: #2c2f33;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width:600px) {
+  .registered {
+    width: 95%;
+    padding: 10px;
+  }
+}
+
+.download a {
+  width: 100%;
+  height: 60px;
+  font-size: 30px;
+  color: #f5f5f5;
+  text-decoration: none;
+  background-color: #3a3c3d;
+  display: block;
+  padding: 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.download a:hover,
+.download a:focus {
+  background-color: #4a4c4d;
+}
+
+.download_info {
+  margin-bottom: 10px;
+  min-height: 30px;
+}
+
+#search-event .search {
+  width: 100%;
+}
+
+#download {
+  width: 100%;
+  margin-bottom: 30px;
+}
